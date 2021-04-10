@@ -9,8 +9,32 @@
  * For n = 152, the output should be 52
  *
  */
-function deleteDigit(/* n */) {
-  throw new Error('Not implemented');
+class DeleteDigit {
+  constructor(i, v) {
+    this.index = i;
+    this.value = v;
+  }
+}
+function deleteDigit(n) {
+  const compareValues = [];
+  const digitArray = n.toString().split('');
+  digitArray.map((_, i) => {
+    let tempArray = [];
+    tempArray = tempArray.concat(digitArray);
+    tempArray.splice(i, 1);
+    const tempValue = Number(tempArray.join(''));
+    const tempObject = new DeleteDigit(i, tempValue);
+    compareValues.push(tempObject);
+    return compareValues;
+  });
+  let max = compareValues[0].value;
+  compareValues.forEach((el) => {
+    if (max <= el.value) {
+      max = el.value;
+    }
+    return max;
+  });
+  return max;
 }
 
 module.exports = deleteDigit;
